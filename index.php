@@ -24,6 +24,11 @@ if(isset($_SESSION['zalogowany'])){
         <a href="register.php">Nie masz konta? Zarejestruj się!</a>
     </form>
     <?php
-    if(isset($_POST['login']) && isset($_POST['haslo']) && !empty($_POST['login']) && !empty($_POST['login']))
+    if(isset($_POST['login']) && isset($_POST['haslo']) && !empty($_POST['login']) && !empty($_POST['login'])){
+        $login = $_POST['login'];
+        $haslo = $_POST['haslo'];
+        $sql = "SELECT * FROM users where users.login = '$login' AND users.password = '$haslo'";
+    }
+    ?>
 </body>
 </html>
