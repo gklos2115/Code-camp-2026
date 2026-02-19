@@ -1,6 +1,6 @@
 <?php
 session_start();
-$db = mysqli_connect('localhost', 'root', '', 'Code_Challenge');
+$db = mysqli_connect('localhost:84', 'root', '', 'Code_Challenge');
 if(isset($_SESSION['zalogowany'])){
     Header("Location: dashboard.php");
     exit(); //opuszczenie strony
@@ -24,7 +24,7 @@ if(isset($_SESSION['zalogowany'])){
         <a href="register.php">Nie masz konta? Zarejestruj się!</a>
     </form>
     <?php
-    if(isset($_POST['login']) && isset($_POST['haslo']) && !empty($_POST['login']) && !empty($_POST['login'])){
+    if(isset($_POST['login']) && isset($_POST['haslo']) && !empty($_POST['login']) && !empty($_POST['haslo'])){
         $login = $_POST['login'];
         $haslo = $_POST['haslo'];
         $sql = "SELECT * FROM users where users.login = '$login' AND users.password = '$haslo'";
