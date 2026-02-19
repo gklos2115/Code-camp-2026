@@ -1,6 +1,6 @@
 <?php
 session_start();
-$db = mysqli_connect('localhost:84', 'root', '', 'Code_Challenge');
+$db = mysqli_connect('localhost', 'root', '', 'Code_Challenge');
 if(isset($_SESSION['zalogowany'])){
     Header("Location: dashboard.php");
     exit(); //opuszczenie strony
@@ -28,6 +28,13 @@ if(isset($_SESSION['zalogowany'])){
         $login = $_POST['login'];
         $haslo = $_POST['haslo'];
         $sql = "SELECT * FROM users where users.login = '$login' AND users.password = '$haslo'";
+        $wynik = mysqli_query($db, $sql);
+        while($wiersz = mysqli_fetch_array($wynik)){
+            if(mysqli_num_rows($wynik) > 0){
+                $id = $wiersz['id'];
+                $_SESSION['zalogowany'] = $id;
+            }
+        }
     }
     ?>
 </body>
