@@ -33,6 +33,10 @@ if(isset($_SESSION['zalogowany'])){
             if(mysqli_num_rows($wynik) > 0){
                 $id = $wiersz['id'];
                 $_SESSION['zalogowany'] = $id;
+                Header("Location: dashboard.php");
+            }
+            else {
+                echo "Błędne dane logowania";
             }
         }
     }
